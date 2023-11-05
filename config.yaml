@@ -1,0 +1,25 @@
+hydra:
+  run:
+    dir: ${output_dir}/${model.nhead}_${model.num_layers}_${data.aug}_${data.max_length}_${data.batch_size}_${data.k_folds}_${training.epochs}_${training.lr}_${training.weight_decay}_${training.T_0}_${training.eta_min}_${seed}
+    
+output_dir: './workdir'
+    
+model:
+    nhead: 12
+    num_layers: 6
+
+data:
+    aug: 0.6
+    max_length: 64
+    k_folds: 1
+    batch_size: 64
+    
+training:
+    epochs: 68
+    lr: 1e-5
+    weight_decay: 1e-5
+    T_0: 10
+    eta_min: 1e-7
+    
+  
+seed: 42

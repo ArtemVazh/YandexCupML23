@@ -1,0 +1,10 @@
+track_embeddings/*
+workdir/*
+.ipynb_checkpoints/
+__pycache__/
+best/
+data.tar.gz
+models/
+subs/
+test.csv
+train.csv
