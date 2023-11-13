@@ -1,1 +1,2 @@
-# ya_cup23
+# Yandex ML Cup 23
+## RecSys Track

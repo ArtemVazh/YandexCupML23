@@ -9,11 +9,12 @@ from torch.utils.data import Dataset, DataLoader
 NUM_TAGS = 256
 
 class TaggingDataset(Dataset):
-    def __init__(self, df, track_idx2embeds, aug=0, testing=False):
+    def __init__(self, df, track_idx2embeds, aug=0, testing=False, label_smoothing = 0):
         self.df = df
         self.testing = testing
         self.aug = aug
         self.track_idx2embeds = track_idx2embeds
+        self.label_smoothing = label_smoothing
         
     def __len__(self):
         return self.df.shape[0]
@@ -27,6 +28,9 @@ class TaggingDataset(Dataset):
         tags = [int(x) for x in row.tags.split(',')]
         target = np.zeros(NUM_TAGS)
         target[tags] = 1
+        if self.label_smoothing > 0:
+            eps = self.label_smoothing / 256
+            target = target * (1 - self.label_smoothing) + eps
         
         if np.random.choice([0, 1], p=[1 - self.aug, self.aug]):
             s = np.random.uniform(0.0, 0.4)

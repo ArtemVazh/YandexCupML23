@@ -6,5 +6,4 @@ best/
 data.tar.gz
 models/
 subs/
-test.csv
-train.csv
+*.csv
