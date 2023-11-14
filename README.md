@@ -13,8 +13,7 @@ To reproduce the results:
 
 **Leaderboard:** 
 
-<img width="609" alt="image" src="https://github.com/ArtemVazh/ya_cup23/assets/44724467/f87da92c-3371-4c01-8430-b0573a247393">
-
+<img width="618" alt="image" src="https://github.com/ArtemVazh/YandexCupML23/assets/44724467/ac98a2e3-730c-4019-8017-b389084574db">
 
 
 
