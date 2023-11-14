@@ -7,5 +7,4 @@ data.tar.gz
 models/
 subs/
 *.csv
-*.sh
 stacking.ipynb
