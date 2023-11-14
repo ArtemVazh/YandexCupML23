@@ -7,3 +7,4 @@ data.tar.gz
 models/
 subs/
 *.csv
+*.sh

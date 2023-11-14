@@ -50,25 +50,14 @@ class Network(nn.Module):
         self.ln = nn.LayerNorm(input_dim)
         self.encoder_layer = nn.TransformerEncoderLayer(d_model=input_dim, nhead=nhead, activation="gelu", batch_first=True)
         self.transformer_encoder = nn.TransformerEncoder(self.encoder_layer, num_layers=num_layers)
-        self.lstm = lstm
-        if lstm:
-            self.encoder = nn.LSTM(768, 768, num_layers=2, bias=True, batch_first=True, dropout=0.1, bidirectional=True)
-            self.poooling = AttentionPooling(input_dim*2)
-            self.bn = nn.BatchNorm1d(input_dim*2)
-            self.fc = nn.Linear(input_dim*2, num_classes)
-        else:
-            self.poooling = AttentionPooling(input_dim)
-            self.fc = nn.Linear(input_dim, num_classes)
+        self.poooling = AttentionPooling(input_dim)
+        self.fc = nn.Linear(input_dim, num_classes)
                
     def forward(self, embeds):
         embeds = self.proj(embeds)
         src_key_padding_mask = (embeds.mean(-1) == -1)
         embeds = self.ln(embeds)
-        if self.lstm:
-            x, (_, _) = self.encoder(embeds)
-            x = self.bn(self.poooling(x))
-        else:
-            x = self.transformer_encoder(embeds, src_key_padding_mask=src_key_padding_mask)
-            x = self.bn(self.poooling(x, mask=src_key_padding_mask))
+        x = self.transformer_encoder(embeds, src_key_padding_mask=src_key_padding_mask)
+        x = self.bn(self.poooling(x, mask=src_key_padding_mask))
         outs = self.fc(x)
         return outs
