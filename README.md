@@ -7,8 +7,9 @@
 **Private Avg PR**: *0.3114*
 
 To reproduce the results:
-1. Run scripts: `scripts/run_train_models_0.sh`,`scripts/run_train_models_1.sh`,`scripts/run_train_models_2.sh`,`scripts/run_train_models_3.sh`
-2. Average results using  `average.ipynb`
+1. `conda create -n ya python=3.10`, `source activate ya`, `pip install -r requirements.txt`
+2. Run scripts: `scripts/run_train_models_0.sh`,`scripts/run_train_models_1.sh`,`scripts/run_train_models_2.sh`,`scripts/run_train_models_3.sh`
+3. Average results using  `average.ipynb`
 
 **Leaderboard:** 
 
